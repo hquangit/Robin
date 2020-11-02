@@ -1,20 +1,7 @@
 from flask import Flask, jsonify
-from flask import render_template
-from flask import request
 import utils
 
 app = Flask(__name__)
-
-@app.route('/login', methods=['POST','GET'])
-def login():
-	if request.method=='POST':
-   		username = request.form['username']
-   		password = request.form['password']
-   		utils.check_user(username, password)
-   		users = utils.retrieveUsers()
-		return render_template('index.html', users=users)
-   	else:
-   		return render_template('index.html')
 
 @app.route('/films_searched/<str>', methods=['GET'])
 def search_films(str):
